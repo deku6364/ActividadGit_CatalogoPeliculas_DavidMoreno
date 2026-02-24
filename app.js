@@ -24,8 +24,8 @@ function renderMovies() {
         <span class="badge">${m.year}</span>
       </div>
       <div class="actions">
-<button class="small edt" data-action="edit">Editar</button>
-<button class="small del" data-action="delete">Eliminar</button>
+        <button class="small edt" data-action="edit">Editar</button>
+        <button class="small del" data-action="delete">Eliminar</button>
       </div>
     `; // Hasta aqui
 
@@ -47,6 +47,7 @@ function addMovie() {
   yearInput.value = "";
   renderMovies();
 }
+
 function editMovieById(id) {
   const movie = movies.find(m => m.id === id);
   if (!movie) return;
@@ -66,28 +67,13 @@ function editMovieById(id) {
 
   movie.title = newTitle.trim();
   movie.year = newYear;
-  renderMovies();
 }
 // Funcion nueva
 function deleteMovieById(id) {
   movies = movies.filter(m => m.id !== id);
+
   renderMovies();
 }
-  if (newTitle === null) return;
-
-  const newYearStr = prompt("Nuevo año:", String(movie.year));
-  if (newYearStr === null) return;
-
-  const newYear = Number(newYearStr);
-
-  if (!newTitle.trim() || !newYear) {
-    alert("Datos no válidos.");
-    return;
-  }
-
-  movie.title = newTitle.trim();
-  movie.year = newYear;
-  renderMovies();
 
 // Solo funciona añadir al inicio
 addBtn.addEventListener("click", addMovie);
@@ -95,10 +81,12 @@ addBtn.addEventListener("click", addMovie);
 // Estos eventos se completarán en ramas
 deleteBtn.addEventListener("click", () => alert("Se implementa en rama eliminar"));
 editBtn.addEventListener("click", () => alert("Se implementa en rama editar"));
+
 movieList.addEventListener("click", (e) => {
   const btn = e.target.closest("button");
   if (!btn) return;
-  // Listener nuevos
+
+// Listener nuevos
 movieList.addEventListener("click", (e) => {
   const btn = e.target.closest("button");
   if (!btn) return;
@@ -112,6 +100,7 @@ movieList.addEventListener("click", (e) => {
     deleteMovieById(id);
   }
 });
+
   const li = e.target.closest("li.item");
   if (!li) return;
 
@@ -121,25 +110,4 @@ movieList.addEventListener("click", (e) => {
     editMovieById(id);
   }
 });
-  if (!btn) return;
-
-  const li = e.target.closest("li.item");
-  if (!li) return;
-
-  const idDel = Number(li.dataset.id);
-
-  if (btn.dataset.action === "delete") {
-    deleteMovieById(id);
-  }
-;
-
-  const liEdit = e.target.closest("li.item");
-  if (!li) return;
-
-  const id = Number(li.dataset.id);
-
-  if (btn.dataset.action === "edit") {
-    editMovieById(id);
-  }
-;
 renderMovies();
