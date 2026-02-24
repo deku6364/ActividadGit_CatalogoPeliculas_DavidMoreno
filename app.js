@@ -67,6 +67,7 @@ function editMovieById(id) {
 
   movie.title = newTitle.trim();
   movie.year = newYear;
+  renderMovies();
 }
 // Funcion nueva
 function deleteMovieById(id) {
