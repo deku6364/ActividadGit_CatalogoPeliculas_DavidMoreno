@@ -88,7 +88,6 @@ function deleteMovieById(id) {
   movie.title = newTitle.trim();
   movie.year = newYear;
   renderMovies();
-}
 
 // Solo funciona añadir al inicio
 addBtn.addEventListener("click", addMovie);
@@ -127,14 +126,14 @@ movieList.addEventListener("click", (e) => {
   const li = e.target.closest("li.item");
   if (!li) return;
 
-  const id = Number(li.dataset.id);
+  const idDel = Number(li.dataset.id);
 
   if (btn.dataset.action === "delete") {
     deleteMovieById(id);
   }
-});
+;
 
-  const li = e.target.closest("li.item");
+  const liEdit = e.target.closest("li.item");
   if (!li) return;
 
   const id = Number(li.dataset.id);
@@ -142,5 +141,5 @@ movieList.addEventListener("click", (e) => {
   if (btn.dataset.action === "edit") {
     editMovieById(id);
   }
-});
+;
 renderMovies();
